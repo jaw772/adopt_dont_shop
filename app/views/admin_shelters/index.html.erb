@@ -3,6 +3,9 @@
 
 <% @shelters.each do |shelter| %>
   <h3>
-    <span><%= link_to "#{shelter.name}", "/shelters/#{shelter.id}" %></span>
+    <%= link_to "#{shelter.name}", "/shelters/#{shelter.id}" %><br>
+    <% AdminShelter.applicants(shelter).each do |applicant|%>
+      <span><%= link_to "#{applicant.name}"%></span>
+    <% end %>
   </h3>
 <% end %>
