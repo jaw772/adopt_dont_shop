@@ -17,7 +17,7 @@ RSpec.describe 'the admin_shelter index' do
 
   it "lists all the pending applications within the shelters" do
     visit "/admin/shelters"
-    # save_and_open_page
+
     expect("Aurora shelter").to appear_before("Frank")
     expect(page).to_not have_content("Gary")
   end

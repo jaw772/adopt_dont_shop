@@ -7,5 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 AdoptablePet.destroy_all
 
-Shelter.create!(name: 'Aurora shelter', city: 'Aurora, CO', foster_program: false, rank: 9)
-Shelter.create!(name: 'Lakewood shelter', city: 'Lakewood, CO', foster_program: false, rank: 6)
+aurora = Shelter.create!(name: 'Aurora shelter', city: 'Aurora, CO', foster_program: false, rank: 9)
+lakewood = Shelter.create!(name: 'Lakewood shelter', city: 'Lakewood, CO', foster_program: false, rank: 6)
+
+aurora.pets.create!(adoptable: true, age: 3, breed: 'pug', name: 'Mel')
+aurora.pets.create!(adoptable: true, age: 3, breed: 'terrier', name: 'Max')
+aurora.pets.create!(adoptable: true, age: 1, breed: 'mixed', name: 'Duke')
+aurora.pets.create!(adoptable: true, age: 2, breed: 'rabbit', name: 'Snowball')
+
+lakewood.pets.create!(adoptable: true, age: 3, breed: 'blue russian', name: 'Chloe')
+lakewood.pets.create!(adoptable: true, age: 3, breed: 'pomeranian', name: 'Gidget')
+lakewood.pets.create!(adoptable: true, age: 1, breed: 'parakeet', name: 'Sweetpea')
+lakewood.pets.create!(adoptable: true, age: 2, breed: 'poodle', name: 'Leonard')
