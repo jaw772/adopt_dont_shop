@@ -1,15 +1,14 @@
 class ApplicationsController < ApplicationController
   @@counter = 0
-  def initialize
-    @adoption_pets = []
-    @pets = []
-  end
+
   def index
     @applications = Application.all
   end
 
   def show
     if @@counter == 0
+      @adoption_pets = []
+      @pets = []
       @application = Application.find(params[:id])
       if params[:search_by_name].present?
         @application
@@ -22,6 +21,8 @@ class ApplicationsController < ApplicationController
         @application.adoption_threshold(@application, params[:adoption])
       end
     else
+      @adoption_pets = []
+      @pets = []
       @application = Application.find(params[:id])
       @app_pets = AdoptablePet.where(application_id: @application.id)
       @adoption_pets = @app_pets.map{|pet| Pet.find(pet.pet_id)}
@@ -45,11 +46,9 @@ class ApplicationsController < ApplicationController
   def create
     adoption = Application.new(app_params)
     if adoption.save
-      shelter = Shelter.all.last
-      ApplicationShelter.create!(shelter_id: shelter.id, application_id: adoption.id)
       redirect_to "/applications/#{adoption.id}"
     else
-      flash[:notice] = "Application not complete: Please fill out all sections"
+      flash[:alert] = "Application not complete: Please fill out all sections"
       render :new
     end
   end

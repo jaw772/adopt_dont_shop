@@ -46,7 +46,6 @@ RSpec.describe 'the applications show page' do
     visit "/applications/#{application.id}"
     fill_in('search_by_name', with: "Lobster")
     click_on("Submit")
-    # save_and_open_page
 
     click_on("Adopt this Pet")
     expect(page).to have_content("Pet/s wanting to adopt: Lobster")
@@ -70,6 +69,5 @@ RSpec.describe 'the applications show page' do
     within("#descrypter") do
       expect(page).to_not have_button("Submit")
     end
-
   end
 end
