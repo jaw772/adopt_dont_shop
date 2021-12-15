@@ -45,6 +45,8 @@ class ApplicationsController < ApplicationController
   def create
     adoption = Application.new(app_params)
     if adoption.save
+      shelter = Shelter.all.last
+      ApplicationShelter.create!(shelter_id: shelter.id, application_id: adoption.id)
       redirect_to "/applications/#{adoption.id}"
     else
       flash[:notice] = "Application not complete: Please fill out all sections"
